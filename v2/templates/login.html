@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block title %}Login / Select Role{% endblock %} {%
+block heading %}Choose Your Portal{% endblock %} {% block content %}
+<div class="flex justify-center items-start pt-16 h-full">
+  <div
+    class="w-full max-w-sm bg-white p-8 rounded-xl shadow-2xl border-t-4 border-primary-500"
+  >
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+      AI Mentor System Access
+    </h2>
+
+    <form action="{{ url_for('login') }}" method="POST" class="space-y-6">
+      <div class="form-group">
+        <label for="role" class="block text-sm font-medium text-gray-700 mb-2"
+          >Select Your User Role</label
+        >
+        <select
+          id="role"
+          name="role"
+          required
+          class="w-full border border-gray-300 rounded-lg p-3 text-lg focus:ring-primary-500 focus:border-primary-500 transition duration-150"
+        >
+          <option value="" disabled selected>-- Select Role --</option>
+          <option value="Admin">Admin</option>
+          <option value="Mentor">Mentor</option>
+          <option value="Student">Student</option>
+        </select>
+      </div>
+
+      <!-- In a real app, this would include username/password fields -->
+      <p class="text-sm text-gray-500 text-center">
+        Authentication is simulated via role selection.
+      </p>
+
+      <button
+        type="submit"
+        class="w-full bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 rounded-xl text-lg transition duration-300 shadow-md"
+      >
+        Enter Portal
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

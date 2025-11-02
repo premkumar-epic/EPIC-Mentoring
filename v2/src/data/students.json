@@ -1,0 +1,23 @@
+{
+  "std_001": {
+    "id": "std_001",
+    "name": "Alice Smith",
+    "marks": [
+      { "subject": "Math", "mark": 75 },
+      { "subject": "Physics", "mark": 58 },
+      { "subject": "History", "mark": 89 }
+    ],
+    "weakness_areas": "Applied Physics, Complex Algebra",
+    "last_query": "Help me understand Newton's laws of motion."
+  },
+  "std_002": {
+    "id": "std_002",
+    "name": "Bob Johnson",
+    "marks": [
+      { "subject": "Chemistry", "mark": 92 },
+      { "subject": "Biology", "mark": 88 }
+    ],
+    "weakness_areas": "Organic Synthesis",
+    "last_query": "What is the future of biochemistry?"
+  }
+}

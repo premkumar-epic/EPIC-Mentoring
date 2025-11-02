@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block title %}Career Path Report{% endblock %} {%
+block heading %}Your Verified Career Path 🌟{% endblock %} {% block content %}
+<div class="flex justify-center">
+  <div class="w-full max-w-4xl bg-white p-8 rounded-xl shadow-2xl">
+    <div class="text-center mb-6">
+      <h3 class="text-2xl font-bold text-gray-800">{{ message }}</h3>
+    </div>
+
+    {% if is_verified %}
+
+    <div class="border-t-4 border-mentor-green p-6 bg-green-50 rounded-b-xl">
+      <p class="text-sm font-semibold text-mentor-green mb-4">
+        Status: VERIFIED by Mentor/Admin
+      </p>
+
+      <h4 class="text-xl font-bold text-gray-800 mb-3">
+        Your Recommended Paths:
+      </h4>
+
+      <div class="prose max-w-none space-y-4 text-gray-700">
+        {{ report_content|safe }}
+      </div>
+
+      <hr class="my-6" />
+      <h4 class="text-lg font-semibold text-gray-800">Next Steps:</h4>
+      <p class="text-gray-600">
+        Discuss this report with your Mentor to build an actionable academic
+        plan.
+      </p>
+    </div>
+
+    {% else %}
+
+    <div class="border-t-4 border-yellow-500 p-6 bg-yellow-50 rounded-b-xl">
+      <div class="flex items-center space-x-3 mb-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8 text-yellow-600 animate-pulse"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 10.586V6z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <p class="text-lg font-bold text-yellow-700">
+          Analysis Complete. Awaiting Verification.
+        </p>
+      </div>
+
+      <p class="text-gray-700 mb-4">
+        The AI analysis of your psychometric assessment is finished. As per
+        protocol, the report must be verified by a Mentor or Admin to ensure
+        accuracy and human oversight.
+      </p>
+      <p class="text-sm font-medium text-gray-600">
+        **Estimated Timeframe:** This process usually takes up to 24 hours.
+        Check back later!
+      </p>
+
+      <a
+        href="{{ url_for('student_portal') }}"
+        class="mt-6 inline-block text-student-blue hover:underline font-semibold"
+      >
+        ← Return to Student Portal
+      </a>
+    </div>
+
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

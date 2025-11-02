@@ -1,0 +1,149 @@
+{% extends "base.html" %} {% block title %}Admin Dashboard{% endblock %} {%
+block heading %}System Administration Overview{% endblock %} {% block content %}
+<div class="space-y-8">
+  <!-- 1. Key Metrics Cards (Responsive Grid) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Card 1: Mentor Count -->
+    <div
+      class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-primary-500"
+    >
+      <p class="text-sm font-medium text-gray-500">Total Mentors</p>
+      <p class="text-3xl font-extrabold text-primary-600">{{ mentor_count }}</p>
+    </div>
+
+    <!-- Card 2: Approval Queue -->
+    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-admin-red">
+      <p class="text-sm font-medium text-gray-500">Pending Approvals</p>
+      <p class="text-3xl font-extrabold text-admin-red">
+        {{ mentor_queue|length }}
+      </p>
+    </div>
+
+    <!-- Card 3: Feedback Awaiting Analysis -->
+    <div
+      class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-mentor-green"
+    >
+      <p class="text-sm font-medium text-gray-500">Anon Feedback Logs</p>
+      <p class="text-3xl font-extrabold text-mentor-green">450+</p>
+    </div>
+
+    <!-- Card 4: Career Reports to Verify -->
+    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
+      <p class="text-sm font-medium text-gray-500">Reports to Verify</p>
+      <!-- Link to verify report (simulated) -->
+      <a
+        href="{{ url_for('verify_career_report') }}"
+        class="text-2xl font-bold text-yellow-600 hover:underline"
+        >Verify Now</a
+      >
+    </div>
+  </div>
+
+  <!-- 2. Mentor Approval Queue -->
+  <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-admin-red">
+    <h3
+      class="text-2xl font-semibold text-gray-800 mb-4 flex justify-between items-center"
+    >
+      New Mentor Approval Queue
+      <span class="text-base font-medium text-admin-red"
+        >({{ mentor_queue|length }} pending)</span
+      >
+    </h3>
+
+    {% if mentor_queue %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Name
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Expertise
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Submitted On
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          {% for mentor_id, mentor in mentor_queue.items() %}
+          <tr>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+            >
+              {{ mentor.name }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ mentor.expertise }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ mentor.submitted_date }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <form
+                action="{{ url_for('approve_mentor', mentor_id=mentor_id) }}"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="text-mentor-green hover:text-green-700 font-semibold transition duration-150"
+                >
+                  Approve & Notify
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-gray-500 p-4 bg-green-50 rounded-lg border border-green-200">
+      ✅ All pending mentors have been approved. Queue is clear!
+    </p>
+    {% endif %}
+  </div>
+
+  <!-- 3. Mentor Feedback Analysis Report Section (Mobile: Collapsible) -->
+  <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-student-blue">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+      Mentor Improvement Reports
+    </h3>
+
+    <!-- Report Summary -->
+    <p class="text-gray-600 mb-6">
+      Based on anonymous student feedback, these reports are generated to
+      identify key issues and suggest improvements.
+    </p>
+
+    <div class="space-y-4">
+      {% for mentor, summary in feedback_report.items() %}
+      <div
+        class="border border-gray-200 rounded-lg p-4 transition duration-200 hover:shadow-sm"
+      >
+        <p class="font-bold text-lg text-primary-600">{{ mentor }}</p>
+        <p class="text-gray-700 mt-1 text-sm italic">{{ summary }}</p>
+        <!-- Simulated Action: Admin would click a button to email this report -->
+        <button
+          class="mt-2 text-xs font-medium text-student-blue hover:text-blue-700"
+        >
+          Send Report
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %} {% block title %}Career Path Assessment{% endblock %}
+{% block heading %}Future Compass: Career Path Assessment 🧭{% endblock %} {%
+block content %}
+<div class="flex justify-center">
+  <div
+    class="w-full max-w-4xl bg-white p-8 rounded-xl shadow-2xl border-t-4 border-yellow-500"
+  >
+    <h3 class="text-2xl font-bold text-gray-800 mb-4">Your Path Starts Here</h3>
+    <p class="text-gray-600 mb-8">
+      Please answer the following questions honestly. Your responses will be
+      analyzed by the AI to determine your strengths and potential career paths,
+      and the final report will be verified by a Mentor.
+    </p>
+
+    <form
+      action="{{ url_for('career_assess') }}"
+      method="POST"
+      class="space-y-6"
+    >
+      {% for q in questions %}
+      <div
+        class="p-4 border border-gray-200 rounded-lg transition duration-200 hover:border-yellow-400 bg-gray-50"
+      >
+        <p class="font-semibold text-lg text-gray-800 mb-3">
+          Q{{ loop.index }}: {{ q.text }}
+        </p>
+
+        <div class="mt-2 space-y-2">
+          <label class="inline-flex items-center mr-6">
+            <input
+              type="radio"
+              name="answer_{{ q.id }}"
+              value="5"
+              required
+              class="form-radio h-4 w-4 text-yellow-500 focus:ring-yellow-500"
+            />
+            <span class="ml-2 text-sm text-gray-700">Strongly Agree</span>
+          </label>
+          <label class="inline-flex items-center mr-6">
+            <input
+              type="radio"
+              name="answer_{{ q.id }}"
+              value="4"
+              class="form-radio h-4 w-4 text-yellow-500 focus:ring-yellow-500"
+            />
+            <span class="ml-2 text-sm text-gray-700">Agree</span>
+          </label>
+          <label class="inline-flex items-center mr-6">
+            <input
+              type="radio"
+              name="answer_{{ q.id }}"
+              value="3"
+              class="form-radio h-4 w-4 text-yellow-500 focus:ring-yellow-500"
+            />
+            <span class="ml-2 text-sm text-gray-700">Neutral</span>
+          </label>
+          <label class="inline-flex items-center mr-6">
+            <input
+              type="radio"
+              name="answer_{{ q.id }}"
+              value="2"
+              class="form-radio h-4 w-4 text-yellow-500 focus:ring-yellow-500"
+            />
+            <span class="ml-2 text-sm text-gray-700">Disagree</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input
+              type="radio"
+              name="answer_{{ q.id }}"
+              value="1"
+              class="form-radio h-4 w-4 text-yellow-500 focus:ring-yellow-500"
+            />
+            <span class="ml-2 text-sm text-gray-700">Strongly Disagree</span>
+          </label>
+        </div>
+      </div>
+      {% endfor %}
+
+      <button
+        type="submit"
+        class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 rounded-xl text-lg transition duration-300 shadow-md"
+      >
+        Submit Assessment & Start Analysis
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}
