@@ -24,6 +24,7 @@ class AIMatcher:
         student_keywords = set(
             kw.strip().lower()
             for kw in student.get('weakness_areas', '').replace(',', ' ').split()
+            if kw.strip() # Remove empty strings
         )
 
         best_match_id = None
@@ -33,6 +34,7 @@ class AIMatcher:
             mentor_expertise = set(
                 exp.strip().lower()
                 for exp in mentor_data.get('expertise', '').replace(',', ' ').split()
+                if exp.strip()
             )
 
             # 2. Calculate match score: count of intersecting keywords
