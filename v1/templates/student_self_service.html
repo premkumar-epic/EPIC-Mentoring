@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+<h2>Student Personalized Advisor</h2>
+
+<form action="{{ url_for('student_advisor') }}" method="POST">
+  <div class="form-group">
+    <label for="query">I want to learn about...</label>
+    <textarea
+      id="query"
+      name="query"
+      rows="4"
+      placeholder="e.g., I need resources for building deep learning models for image recognition."
+    >
+{{ query }}</textarea
+    >
+  </div>
+  <button type="submit">Get Learning Resources</button>
+</form>
+
+{% if resources_html %}
+<div class="analysis-box">
+  <h3>📚 Suggested Resources & Study Plan</h3>
+  {{ resources_html|safe }}
+</div>
+{% endif %} {% endblock %}

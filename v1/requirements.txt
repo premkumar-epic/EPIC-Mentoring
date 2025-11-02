@@ -1,0 +1,10 @@
+# Core Components for Embeddings and Vector DB
+sentence-transformers
+chromadb
+
+# Data Handling and Advanced Ranking
+pandas
+scikit-learn
+
+# User Interface
+streamlit

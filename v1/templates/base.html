@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mentoring Platform</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Custom colors defined here
+                        'primary-500': '#4f46e5',
+                        'primary-600': '#4338ca',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar for better feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #e0e7ff; }
+        /* Font setup */
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        /* Style for textarea/input placeholder to match dark text */
+        .form-group textarea::placeholder, .form-group input::placeholder { color: #9ca3af; }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <h1 class="text-3xl font-extrabold text-primary-600 tracking-tight">
+                    Mentor AI
+                </h1>
+
+                <div class="flex items-center space-x-4">
+                    <form action="{{ url_for('set_role') }}" method="POST" class="flex items-center space-x-2 bg-gray-100 p-2 rounded-lg">
+                        <span class="text-sm font-medium text-gray-700">Role:</span>
+                        <select id="role-select" name="role" onchange="this.form.submit()"
+                                class="border border-gray-300 rounded-md py-1 px-2 text-sm focus:ring-primary-500 focus:border-primary-500 transition duration-150 ease-in-out">
+                            <option value="Admin" {% if session.get('role', 'Admin') == 'Admin' %}selected{% endif %}>Admin / Teacher</option>
+                            <option value="Student" {% if session.get('role', 'Admin') == 'Student' %}selected{% endif %}>Student</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6 border-b pb-2">
+                {% block title %}{% endblock %}
+            </h2>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="bg-white border-t mt-12 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 AI Mentoring System. Built with Flask & Tailwind.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

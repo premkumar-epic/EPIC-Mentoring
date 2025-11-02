@@ -1,0 +1,16 @@
+[
+  {
+    "id": "S001",
+    "name": "Ben Taylor",
+    "current_focus": "Advanced Python, Data Structures, Concurrency",
+    "weakness_areas": "Cloud deployment pipelines (AWS), Database optimization (SQL), Object-Oriented Design principles.",
+    "goal": "Get a job as a Mid-Level Backend Engineer within 6 months."
+  },
+  {
+    "id": "S002",
+    "name": "Chloe White",
+    "current_focus": "React, TypeScript, State Management (Redux)",
+    "weakness_areas": "Accessibility (ARIA), Performance tuning (Webpack), Unit testing (Jest/RTL).",
+    "goal": "Build and deploy a scalable E-commerce application prototype."
+  }
+]

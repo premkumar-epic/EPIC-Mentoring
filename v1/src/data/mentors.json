@@ -1,0 +1,23 @@
+[
+  {
+    "id": "M001",
+    "name": "Alex Johnson",
+    "expertise": "Senior Data Scientist, NLP, PyTorch, Causal Inference",
+    "description": "Expert in natural language processing and transformer models. I can mentor on productionizing deep learning models and advanced statistical modeling.",
+    "rating": 4.5
+  },
+  {
+    "id": "M002",
+    "name": "Sarah Chen",
+    "expertise": "Frontend Development, React, TypeScript, UI/UX Design",
+    "description": "A seasoned frontend architect specializing in building scalable React applications and focusing on modern, accessible UI/UX principles.",
+    "rating": 4.8
+  },
+  {
+    "id": "M003",
+    "name": "David Lee",
+    "expertise": "Cloud Architecture, AWS, DevOps, Terraform, Kubernetes",
+    "description": "I help startups migrate to the cloud (AWS focus), implement robust CI/CD pipelines, and manage containerized applications with Kubernetes.",
+    "rating": 4.2
+  }
+]

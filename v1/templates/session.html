@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Mentor Assignment & Session Analysis</h2>
+
+<form action="{{ url_for('session_analysis') }}" method="POST">
+    <div class="form-group">
+        <label for="student_id">Select Student to Analyze:</label>
+        <select id="student_id" name="student_id">
+            {% for id, student in students.items() %}
+            <option value="{{ id }}" {% if id == selected_student_id %}selected{% endif %}>{{ student.name }} ({{ student.weakness_areas }})</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit">Find Best Mentor & Generate Plan</button>
+</form>
+
+{% if final_match %}
+<div class="analysis-box">
+    <h3>✅ Recommended Mentor: {{ final_match.name }}</h3>
+    <p><strong>Expertise:</strong> {{ final_match.expertise }}</p>
+    <p><strong>Final Weighted Match Score:</strong> {{ "%.3f"|format(final_match.final_score) }}</p>
+
+    <hr>
+
+    <h3>🤖 AI-Generated Action Plan</h3>
+    {{ final_plan_html|safe }}
+
+    <hr>
+
+    <h3>Submit Session Feedback</h3>
+    <form action="{{ url_for('submit_feedback') }}" method="POST">
+        <input type="hidden" name="mentor_id" value="{{ final_match.id }}">
+        <input type="hidden" name="mentee_query" value="Simulated query for {{ students[selected_student_id].name }}">
+        <input type="hidden" name="vector_distance" value="{{ final_match.vector_distance }}">
+
+        <div class="form-group">
+            <label for="session_rating">Session Rating (1-5):</label>
+            <input type="range" id="session_rating" name="session_rating" min="1" max="5" value="5">
+        </div>
+        <button type="submit">Submit Individual Feedback</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

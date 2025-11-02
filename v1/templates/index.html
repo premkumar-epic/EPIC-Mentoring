@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block content %}
+<h2>Admin Dashboard</h2>
+{% if role == 'Admin' %}
+
+<div class="dashboard-stats">
+  <div class="stat-box">
+    <h2>{{ mentor_count }}</h2>
+    <p>Total Mentors</p>
+  </div>
+  <div class="stat-box">
+    <h2>{{ student_count }}</h2>
+    <p>Total Students</p>
+  </div>
+  <div class="stat-box">
+    <h2>{{ feedback_count }}</h2>
+    <p>Feedback Entries</p>
+  </div>
+</div>
+
+<h3>Admin Panel: Weighting Preferences</h3>
+<form action="{{ url_for('update_weights') }}" method="POST">
+  <div class="form-group">
+    <label for="vector_distance"
+      >Vector Distance Weight (Current: {{ weights.vector_distance }})</label
+    >
+    <input
+      type="range"
+      id="vector_distance"
+      name="vector_distance"
+      min="0.0"
+      max="2.0"
+      step="0.1"
+      value="{{ weights.vector_distance }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="historical_success"
+      >Historical Success Weight (Current: {{ weights.historical_success
+      }})</label
+    >
+    <input
+      type="range"
+      id="historical_success"
+      name="historical_success"
+      min="0.0"
+      max="2.0"
+      step="0.1"
+      value="{{ weights.historical_success }}"
+    />
+  </div>
+  <button type="submit">Update Weights</button>
+</form>
+
+<hr />
+
+<h3>System Management</h3>
+<form
+  action="{{ url_for('retrain_model') }}"
+  method="POST"
+  style="display: inline-block"
+>
+  <button type="submit">Retrain Ranker Now</button>
+</form>
+<a href="{{ url_for('session_analysis') }}" style="margin-left: 20px"
+  >Go to Session Analysis</a
+>
+
+{% else %}
+<p>
+  Please switch your role to **Student** or **Admin** to access the
+  corresponding features.
+</p>
+{% endif %} {% endblock %}
