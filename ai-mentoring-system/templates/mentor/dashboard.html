@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Mentor Dashboard - AI Mentoring System{% endblock %}
+
+{% block nav_links %}
+<div class="bg-green-500 border-t border-green-400">
+    <div class="container mx-auto px-4">
+        <div class="flex space-x-1 py-2">
+            <a href="{{ url_for('mentor_dashboard') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-green-400 text-sm font-semibold nav-link-active">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('mentor_students') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-user-graduate"></i>
+                <span>Students</span>
+            </a>
+            <a href="{{ url_for('mentor_sessions') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Sessions</span>
+            </a>
+            <a href="{{ url_for('upload_marks') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-upload"></i>
+                <span>Upload Marks</span>
+            </a>
+            <a href="{{ url_for('mentor_feedback') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-comments"></i>
+                <span>Feedback</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">
+        <i class="fas fa-chalkboard-teacher text-green-600"></i> Mentor Dashboard
+    </h1>
+    <p class="text-gray-600">Welcome, {{ mentor.name }}!</p>
+</div>
+
+<!-- Stats -->
+<div class="grid md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-600 text-sm">Students</p>
+                <p class="text-3xl font-bold text-green-600">{{ students|length }}</p>
+            </div>
+            <i class="fas fa-user-graduate text-4xl text-green-300"></i>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-600 text-sm">Upcoming Sessions</p>
+                <p class="text-3xl font-bold text-blue-600">{{ upcoming_sessions|length }}</p>
+            </div>
+            <i class="fas fa-calendar-check text-4xl text-blue-300"></i>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-600 text-sm">Status</p>
+                <p class="text-lg font-semibold text-purple-600">{{ mentor.status|title }}</p>
+            </div>
+            <i class="fas fa-check-circle text-4xl text-purple-300"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Upcoming Sessions -->
+<div class="bg-white rounded-lg shadow p-6 mb-8">
+    <h2 class="text-xl font-bold mb-4">Upcoming Sessions</h2>
+    {% if upcoming_sessions %}
+    <div class="space-y-3">
+        {% for session in upcoming_sessions[:5] %}
+        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div>
+                <p class="font-semibold">{{ session.student.name }}</p>
+                <p class="text-sm text-gray-600">{{ session.date }}</p>
+            </div>
+            <a href="{{ url_for('mentor_student_detail', student_id=session.student_id) }}"
+               class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                View Details
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-gray-600">No upcoming sessions scheduled.</p>
+    {% endif %}
+</div>
+
+<!-- Assigned Students -->
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-bold mb-4">Assigned Students</h2>
+    {% if students %}
+    <div class="grid md:grid-cols-2 gap-4">
+        {% for student in students %}
+        <div class="p-4 border rounded-lg">
+            <h3 class="font-semibold text-lg">{{ student.name }}</h3>
+            <p class="text-sm text-gray-600">{{ student.email }}</p>
+            <a href="{{ url_for('mentor_student_detail', student_id=student.id) }}"
+               class="text-blue-600 hover:underline mt-2 inline-block">
+                View Profile →
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-gray-600">No students assigned yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

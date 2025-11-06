@@ -4,6 +4,8 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, abort, flash # Added 'flash'
 import os
 import json
+import pandas as pd
+from io import StringIO
 
 # --- 1. SIMULATED AI CORE COMPONENTS (Imports & Fallback) ---
 try:
@@ -27,7 +29,6 @@ except ImportError:
         # Updated to reflect new response formatting and simulated error
         def suggest_resources(self, query):
             # Simulate a failure for demonstration if needed, otherwise give response
-            # return "<p class='text-red-500'>[AI OFFLINE] LLM Service is not available. Please check the GEMINI_API_KEY.</p>"
             return "<p>[AI RESPONSE - SIMULATED]</p><p>Disclaimer: This advice is for guidance only.</p>"
         def generate_session_tips(self, student_data, mentor_assessment):
             # Updated to reflect new formatted output
@@ -48,10 +49,8 @@ INITIAL_DATA = {
     },
     'approval_queue': {
         'mnt_002': {'id': 'mnt_002', 'name': 'Dr. Jane Roe', 'expertise': 'Calculus, Economics', 'submitted_date': '2025-11-01'},
-        # Removed 'mnt_003' as per the final INITIAL_DATA snippet
     },
     'session_requests': {
-        # Added student_id
         'sess_001': {'id': 'sess_001', 'student_name': 'Alice Smith', 'student_id': 'std_001', 'query': 'I need help preparing for university entrance exams, specifically calculus.'}
     },
     'feedback_report': {}, # Starts empty, filled by RANKER
@@ -105,10 +104,53 @@ class DataService:
     def get_career_report(self, student_id):
         return self.data['career_reports'].get(student_id, {'status': 'not_started', 'content': None})
 
+    # --- NEW METHOD: Update marks from uploaded file data ---
+    def update_marks_from_df(self, df):
+        """Processes a Pandas DataFrame to update student marks."""
+        # Ensure required columns exist
+        required_cols = ['student_id', 'subject', 'mark']
+        if not all(col in df.columns for col in required_cols):
+            raise ValueError("CSV must contain columns: student_id, subject, mark.")
+
+        updated_students = set()
+
+        for index, row in df.iterrows():
+            # Robust type conversion
+            try:
+                student_id = str(row['student_id']).strip()
+                subject = str(row['subject']).strip()
+                mark = int(row['mark'])
+            except ValueError:
+                 # Skip rows with invalid data
+                 continue
+
+            if student_id in self.data['students']:
+                student_data = self.data['students'][student_id]
+
+                # Logic: replace old mark for the subject, or add new mark
+                found = False
+                if 'marks' not in student_data:
+                    student_data['marks'] = []
+
+                for item in student_data['marks']:
+                    if item['subject'] == subject:
+                        item['mark'] = mark
+                        found = True
+                        break
+
+                if not found:
+                    student_data['marks'].append({'subject': subject, 'mark': mark})
+
+                updated_students.add(student_id)
+
+        return len(updated_students)
+    # --- END NEW METHOD ---
+
+
 # --- 3. FLASK APPLICATION SETUP ---
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'a_secure_random_key_for_testing'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'a_secure_random_key_for_testing')
 app.config['ENV'] = 'development' # Ensure proper environment setting
 
 # Initialize AI Systems and Data Service (CRITICAL FIX: Order is correct)
@@ -243,15 +285,37 @@ def mentor_dashboard():
 def upload_marks():
     if request.method == 'POST':
         file = request.files.get('file')
+
         if file and file.filename.endswith(('.csv', '.xlsx', '.xls')):
-            # In a real app, use pandas to parse file and update DATA_SERVICE
-            print(f"File received: {file.filename}")
-            flash(f"Marks file '{file.filename}' uploaded (Simulated processing).", 'success')
-            return redirect(url_for('mentor_dashboard'))
-        else:
-            flash("Invalid file type. Please upload a CSV, XLSX, or XLS file.", 'error')
+            try:
+                # 1. Read the file into a Pandas DataFrame
+                if file.filename.endswith('.csv'):
+                    # Convert FileStorage object to a stream for Pandas to read
+                    file_stream = StringIO(file.read().decode('utf-8'))
+                    df = pd.read_csv(file_stream)
+                elif file.filename.endswith(('.xlsx', '.xls')):
+                    # Pandas read_excel handles both .xlsx and .xls
+                    df = pd.read_excel(file)
+
+                # 2. Process the data and update DataService
+                # NOTE: Your CSV/Excel MUST have columns: student_id, subject, mark
+                processed_count = DATA_SERVICE.update_marks_from_df(df)
+
+                flash(f'Successfully updated marks for {processed_count} students.', 'success')
+                return redirect(url_for('mentor_dashboard'))
+
+            except ValueError as ve:
+                flash(f'Error in file data: {str(ve)}', 'error')
+                return redirect(request.url)
+            except Exception as e:
+                flash(f'Error processing file: {str(e)}', 'error')
+                return redirect(request.url)
+
+        flash('Invalid file format. Please upload a CSV, XLSX, or XLS file.', 'error')
+        return redirect(request.url)
 
     return render_template('mentor_upload.html')
+
 
 @app.route('/mentor/session/<session_id>', methods=['GET', 'POST'])
 @role_required('Mentor')

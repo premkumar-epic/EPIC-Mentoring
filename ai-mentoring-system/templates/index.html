@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home - AI Mentoring System{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto text-center py-16">
+    <h1 class="text-5xl font-bold text-gray-800 mb-6">
+        <i class="fas fa-graduation-cap text-blue-600"></i>
+        AI-Powered Mentoring System
+    </h1>
+    <p class="text-xl text-gray-600 mb-8">
+        Intelligent academic support, personalized learning, and career guidance
+    </p>
+    <div class="flex justify-center space-x-4">
+        <a href="{{ url_for('login') }}" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+        <a href="{{ url_for('register') }}" class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition">
+            <i class="fas fa-user-plus"></i> Register
+        </a>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow">
+            <i class="fas fa-user-graduate text-4xl text-blue-600 mb-4"></i>
+            <h3 class="text-xl font-semibold mb-2">For Students</h3>
+            <p class="text-gray-600">Get personalized academic guidance and career recommendations</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <i class="fas fa-chalkboard-teacher text-4xl text-green-600 mb-4"></i>
+            <h3 class="text-xl font-semibold mb-2">For Mentors</h3>
+            <p class="text-gray-600">Manage mentees with AI-powered insights and tools</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <i class="fas fa-cog text-4xl text-purple-600 mb-4"></i>
+            <h3 class="text-xl font-semibold mb-2">For Admins</h3>
+            <p class="text-gray-600">Oversee the system and manage mentor-student matching</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

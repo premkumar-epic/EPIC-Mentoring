@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mentor Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 p-10">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold text-indigo-700">
+        Welcome, {{ username }} 🧑‍🏫
+      </h1>
+      <a href="{{ url_for('logout') }}" class="text-red-500 font-semibold"
+        >Logout</a
+      >
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+      class="text-sm p-4 rounded-lg mb-4 {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}"
+    >
+      {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <div class="grid grid-cols-3 gap-6">
+      <div class="p-6 bg-white shadow-md rounded-xl border border-indigo-200">
+        <h3 class="text-xl font-semibold mb-2 text-indigo-600 text-center">
+          Mentor Session Management
+        </h3>
+        {% for sr in session_requests %}
+        <div
+          class="flex justify-between items-center p-2 bg-gray-50 rounded-lg my-1"
+        >
+          <span>{{sr.student_name}} - {{sr.query}}</span>
+          <a
+            href='{{ url_for("mentor_session",session_id=sr.id) }}'
+            class="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-full"
+            >Open</a
+          >
+        </div>
+        {% endfor %}
+      </div>
+      <a
+        href="{{ url_for('mentor_upload_marks') }}"
+        class="p-6 bg-white shadow-md rounded-xl text-center hover:shadow-lg transition block"
+      >
+        <h3 class="text-xl font-semibold text-center mb-2 text-indigo-600">
+          Marks Upload System
+        </h3>
+        <p class="text-gray-600">Upload CSV/Excel to update student marks.</p>
+      </a>
+      <div class="p-6 bg-white shadow-md rounded-xl text-center">
+        <h3 class="text-xl font-semibold text-center mb-2 text-indigo-600">
+          Student Progress Overview
+        </h3>
+        <p class="text-gray-600">{{ my_students|length }} Students Assigned</p>
+      </div>
+    </div>
+  </body>
+</html>

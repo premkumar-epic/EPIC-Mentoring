@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard - AI Mentoring System{% endblock %}
+
+{% block nav_links %}
+<div class="bg-blue-500 border-t border-blue-400">
+    <div class="container mx-auto px-4">
+        <div class="flex space-x-1 py-2">
+            <a href="{{ url_for('student_dashboard') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-blue-400 text-sm font-semibold nav-link-active">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('ai_advisor') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-robot"></i>
+                <span>AI Advisor</span>
+            </a>
+            <a href="{{ url_for('career_assessment') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-clipboard-check"></i>
+                <span>Career Assessment</span>
+            </a>
+            <a href="{{ url_for('student_performance') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-chart-line"></i>
+                <span>Performance</span>
+            </a>
+            <a href="{{ url_for('student_resources') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-book"></i>
+                <span>Resources</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">
+        <i class="fas fa-user-graduate text-blue-600"></i> Student Dashboard
+    </h1>
+    <p class="text-gray-600">Welcome back, {{ student.name }}!</p>
+</div>
+
+<!-- Performance Summary -->
+<div class="grid md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-600 text-sm">Average Marks</p>
+                <p class="text-3xl font-bold text-blue-600">{{ performance.average }}%</p>
+            </div>
+            <i class="fas fa-chart-line text-4xl text-blue-300"></i>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-600 text-sm">Subjects</p>
+                <p class="text-3xl font-bold text-green-600">{{ performance.total_subjects }}</p>
+            </div>
+            <i class="fas fa-book text-4xl text-green-300"></i>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-600 text-sm">Mentor</p>
+                <p class="text-lg font-semibold text-purple-600">
+                    {% if student.mentor_id %}Assigned{% else %}Not Assigned{% endif %}
+                </p>
+            </div>
+            <i class="fas fa-user-tie text-4xl text-purple-300"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Performance -->
+<div class="bg-white rounded-lg shadow p-6 mb-8">
+    <h2 class="text-xl font-bold mb-4">Recent Performance</h2>
+    <div class="overflow-x-auto">
+        <table class="w-full">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 text-left">Subject</th>
+                    <th class="px-4 py-2 text-left">Marks</th>
+                    <th class="px-4 py-2 text-left">Semester</th>
+                    <th class="px-4 py-2 text-left">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mark in performance.marks[:5] %}
+                <tr class="border-b">
+                    <td class="px-4 py-2">{{ mark.subject }}</td>
+                    <td class="px-4 py-2">
+                        <span class="px-2 py-1 rounded {% if mark.marks >= 80 %}bg-green-100 text-green-800{% elif mark.marks >= 60 %}bg-yellow-100 text-yellow-800{% else %}bg-red-100 text-red-800{% endif %}">
+                            {{ mark.marks }}%
+                        </span>
+                    </td>
+                    <td class="px-4 py-2">{{ mark.semester }}</td>
+                    <td class="px-4 py-2">{{ mark.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Learning Recommendations -->
+{% if recommendations %}
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-bold mb-4">Learning Recommendations</h2>
+    <ul class="space-y-2">
+        {% for rec in recommendations[:5] %}
+        <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>{{ rec }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endblock %}
+

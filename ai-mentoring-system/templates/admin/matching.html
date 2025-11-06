@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Mentor Matching - AI Mentoring System{% endblock %}
+
+{% block nav_links %}
+<div class="bg-purple-500 border-t border-purple-400">
+    <div class="container mx-auto px-4">
+        <div class="flex space-x-1 py-2">
+            <a href="{{ url_for('admin_dashboard') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('pending_mentors') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-user-clock"></i>
+                <span>Pending Mentors</span>
+            </a>
+            <a href="{{ url_for('mentor_matching') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-purple-400 text-sm font-semibold nav-link-active">
+                <i class="fas fa-users"></i>
+                <span>Matching</span>
+            </a>
+            <a href="{{ url_for('admin_analytics') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="{{ url_for('admin_users') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-users-cog"></i>
+                <span>Users</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-gray-800 mb-6">
+    <i class="fas fa-user-friends text-purple-600"></i> AI Mentor Matching
+</h1>
+
+{% if matches %}
+<div class="space-y-6">
+    {% for match in matches %}
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="mb-4">
+            <h2 class="text-xl font-bold">{{ match.student.name }}</h2>
+            <p class="text-gray-600">{{ match.student.email }}</p>
+            {% if match.student.weakness_areas %}
+            <div class="mt-2">
+                <span class="text-sm text-gray-600">Weakness Areas: </span>
+                {% for area in match.student.weakness_areas %}
+                <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs">{{ area }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <h3 class="font-semibold mb-3">AI-Recommended Mentors:</h3>
+        <div class="space-y-3">
+            {% for rec in match.recommendations %}
+            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div class="flex-1">
+                    <p class="font-semibold">{{ rec.mentor.name }}</p>
+                    <p class="text-sm text-gray-600">{{ rec.match_reason }}</p>
+                    {% if rec.mentor.expertise %}
+                    <div class="mt-2">
+                        {% for field in rec.mentor.expertise %}
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs mr-1">{{ field }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="ml-4 text-right">
+                    <p class="text-sm text-gray-600">Match Score</p>
+                    <p class="text-2xl font-bold text-green-600">{{ "%.1f"|format(rec.score * 100) }}%</p>
+                    <form method="POST" action="{{ url_for('assign_mentor') }}" class="mt-2">
+                        <input type="hidden" name="student_id" value="{{ match.student.id }}">
+                        <input type="hidden" name="mentor_id" value="{{ rec.mentor.id }}">
+                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                            Assign
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="bg-white rounded-lg shadow p-12 text-center">
+    <i class="fas fa-check-circle text-6xl text-green-300 mb-4"></i>
+    <p class="text-gray-600 text-lg">All students have been matched with mentors!</p>
+</div>
+{% endif %}
+{% endblock %}
+

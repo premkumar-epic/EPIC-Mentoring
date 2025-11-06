@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 p-10">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold text-indigo-700">
+        Welcome, {{ username }} 👩‍💼
+      </h1>
+      <a href="{{ url_for('logout') }}" class="text-red-500 font-semibold"
+        >Logout</a
+      >
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+      class="text-sm p-4 rounded-lg mb-4 {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}"
+    >
+      {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <div class="grid grid-cols-3 gap-6">
+      <div
+        class="p-6 bg-white shadow-md rounded-xl text-center border border-indigo-200"
+      >
+        <h3 class="text-xl font-semibold mb-2 text-indigo-600">
+          Mentor Approval System
+        </h3>
+        <p class="text-gray-600 mb-4">
+          {{ mentor_queue|length }} Mentors Pending
+        </p>
+        {% for k,v in mentor_queue.items() %}
+        <div
+          class="flex justify-between items-center p-2 bg-gray-50 rounded-lg my-1"
+        >
+          <span>{{v.name}} - {{v.expertise}}</span>
+          <form
+            method="post"
+            action='{{ url_for("admin_approve",mentor_id=k) }}'
+            class="inline"
+          >
+            <button
+              class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs px-3 py-1 rounded-full"
+            >
+              Approve
+            </button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="p-6 bg-white shadow-md rounded-xl text-center">
+        System Analytics Dashboard ({{ mentor_count }} Total Mentors)
+      </div>
+      <div class="p-6 bg-white shadow-md rounded-xl text-center">
+        AI Report Monitoring
+      </div>
+    </div>
+  </body>
+</html>

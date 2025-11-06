@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}AI Academic Advisor - AI Mentoring System{% endblock %}
+
+{% block nav_links %}
+<div class="bg-blue-500 border-t border-blue-400">
+    <div class="container mx-auto px-4">
+        <div class="flex space-x-1 py-2">
+            <a href="{{ url_for('student_dashboard') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('ai_advisor') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-blue-400 text-sm font-semibold nav-link-active">
+                <i class="fas fa-robot"></i>
+                <span>AI Advisor</span>
+            </a>
+            <a href="{{ url_for('career_assessment') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-clipboard-check"></i>
+                <span>Career Assessment</span>
+            </a>
+            <a href="{{ url_for('student_performance') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-chart-line"></i>
+                <span>Performance</span>
+            </a>
+            <a href="{{ url_for('student_resources') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-book"></i>
+                <span>Resources</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">
+        <i class="fas fa-robot text-blue-600"></i> AI Academic Advisor
+    </h1>
+
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+            <p class="text-sm text-yellow-800">
+                <i class="fas fa-info-circle"></i> <strong>Disclaimer:</strong> This advice is AI-generated and should be used as a supplement to professional academic guidance. Always consult with your mentor or academic advisor for personalized recommendations.
+            </p>
+        </div>
+
+        <form id="advisorForm" class="mb-6">
+            <div class="mb-4">
+                <label class="block text-gray-700 font-semibold mb-2">Ask your question</label>
+                <textarea id="queryInput" name="query" rows="4" required
+                          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="e.g., How can I improve my performance in Mathematics?"></textarea>
+            </div>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                <i class="fas fa-paper-plane"></i> Get Advice
+            </button>
+        </form>
+
+        <div id="responseArea" class="hidden">
+            <div class="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-500">
+                <h3 class="font-semibold mb-2">AI Response:</h3>
+                <div id="responseContent" class="text-gray-700 whitespace-pre-line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('advisorForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const query = document.getElementById('queryInput').value;
+    const responseArea = document.getElementById('responseArea');
+    const responseContent = document.getElementById('responseContent');
+
+    responseContent.textContent = 'Loading...';
+    responseArea.classList.remove('hidden');
+
+    try {
+        const response = await fetch('{{ url_for("ai_advisor") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `query=${encodeURIComponent(query)}`
+        });
+
+        const data = await response.json();
+        responseContent.textContent = data.response;
+    } catch (error) {
+        responseContent.textContent = 'Error: Could not get response. Please try again.';
+    }
+});
+</script>
+{% endblock %}
+

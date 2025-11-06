@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Mentoring Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-xl rounded-2xl p-8 w-96">
+      <h2 class="text-2xl font-bold text-center text-indigo-600 mb-6">
+        AI Mentoring System
+      </h2>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div
+        class="text-sm text-center p-2 rounded-lg mb-4 {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-blue-100 text-blue-700{% endif %}"
+      >
+        {{ message }}
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      <form method="POST" action="{{ url_for('login') }}" class="space-y-4">
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter your username (e.g., student)"
+          required
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+        />
+
+        <select
+          name="role"
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          required
+        >
+          <option value="">Select Role</option>
+          <option value="Admin">Admin</option>
+          <option value="Mentor">Mentor</option>
+          <option value="Student">Student</option>
+        </select>
+
+        <button
+          type="submit"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg font-semibold transition"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

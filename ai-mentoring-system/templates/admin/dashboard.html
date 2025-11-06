@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - AI Mentoring System{% endblock %}
+
+{% block nav_links %}
+<div class="bg-purple-500 border-t border-purple-400">
+    <div class="container mx-auto px-4">
+        <div class="flex space-x-1 py-2">
+            <a href="{{ url_for('admin_dashboard') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-purple-400 text-sm font-semibold nav-link-active">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('pending_mentors') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-user-clock"></i>
+                <span>Pending Mentors</span>
+            </a>
+            <a href="{{ url_for('mentor_matching') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-users"></i>
+                <span>Matching</span>
+            </a>
+            <a href="{{ url_for('admin_analytics') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="{{ url_for('admin_users') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-users-cog"></i>
+                <span>Users</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">
+        <i class="fas fa-cog text-purple-600"></i> Admin Dashboard
+    </h1>
+    <p class="text-gray-600">System overview and management</p>
+</div>
+
+<!-- Analytics Cards -->
+<div class="grid md:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow">
+        <p class="text-gray-600 text-sm mb-2">Total Students</p>
+        <p class="text-3xl font-bold text-blue-600">{{ analytics.total_students }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <p class="text-gray-600 text-sm mb-2">Total Mentors</p>
+        <p class="text-3xl font-bold text-green-600">{{ analytics.total_mentors }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <p class="text-gray-600 text-sm mb-2">Active Sessions</p>
+        <p class="text-3xl font-bold text-purple-600">{{ analytics.total_sessions }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <p class="text-gray-600 text-sm mb-2">Pending Mentors</p>
+        <p class="text-3xl font-bold text-yellow-600">{{ analytics.pending_mentors }}</p>
+    </div>
+</div>
+
+<!-- Pending Mentors -->
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold">Pending Mentor Applications</h2>
+        <a href="{{ url_for('pending_mentors') }}" class="text-blue-600 hover:underline">View All →</a>
+    </div>
+    {% if pending_mentors %}
+    <div class="overflow-x-auto">
+        <table class="w-full">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 text-left">Name</th>
+                    <th class="px-4 py-2 text-left">Email</th>
+                    <th class="px-4 py-2 text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mentor in pending_mentors[:5] %}
+                <tr class="border-b">
+                    <td class="px-4 py-2">{{ mentor.name }}</td>
+                    <td class="px-4 py-2">{{ mentor.email }}</td>
+                    <td class="px-4 py-2">
+                        <form method="POST" action="{{ url_for('approve_mentor', mentor_id=mentor.id) }}" class="inline">
+                            <button type="submit" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Approve</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('reject_mentor', mentor_id=mentor.id) }}" class="inline ml-2">
+                            <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Reject</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-gray-600">No pending mentor applications.</p>
+    {% endif %}
+</div>
+
+<!-- Mentor Rankings -->
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-bold mb-4">Top Performing Mentors</h2>
+    {% if mentor_rankings %}
+    <div class="overflow-x-auto">
+        <table class="w-full">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 text-left">Rank</th>
+                    <th class="px-4 py-2 text-left">Name</th>
+                    <th class="px-4 py-2 text-left">Rating</th>
+                    <th class="px-4 py-2 text-left">Students</th>
+                    <th class="px-4 py-2 text-left">Sessions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ranking in mentor_rankings %}
+                <tr class="border-b">
+                    <td class="px-4 py-2">
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full font-bold">
+                            #{{ ranking.rank }}
+                        </span>
+                    </td>
+                    <td class="px-4 py-2 font-semibold">{{ ranking.name }}</td>
+                    <td class="px-4 py-2">
+                        <span class="text-yellow-500">
+                            {% for i in range(ranking.rating|int) %}★{% endfor %}
+                        </span>
+                        {{ ranking.rating }}
+                    </td>
+                    <td class="px-4 py-2">{{ ranking.students_mentored }}</td>
+                    <td class="px-4 py-2">{{ ranking.sessions_completed }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-gray-600">No mentor rankings available yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,1002 @@
+{
+  "std_001": {
+    "id": "std_001",
+    "name": "Ishaan Brown",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 96
+      },
+      {
+        "subject": "Economics",
+        "mark": 69
+      },
+      {
+        "subject": "Math",
+        "mark": 82
+      }
+    ],
+    "weakness_areas": "Computer Science, History",
+    "last_query": "Explain basics of English."
+  },
+  "std_002": {
+    "id": "std_002",
+    "name": "Daniel Davis",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 62
+      },
+      {
+        "subject": "Economics",
+        "mark": 76
+      },
+      {
+        "subject": "Physics",
+        "mark": 92
+      }
+    ],
+    "weakness_areas": "English, History",
+    "last_query": "Explain basics of Chemistry."
+  },
+  "std_003": {
+    "id": "std_003",
+    "name": "Chloe Thomas",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 50
+      },
+      {
+        "subject": "Biology",
+        "mark": 69
+      },
+      {
+        "subject": "Economics",
+        "mark": 68
+      }
+    ],
+    "weakness_areas": "Biology, Economics",
+    "last_query": "Explain basics of History."
+  },
+  "std_004": {
+    "id": "std_004",
+    "name": "Isabella Wilson",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 82
+      },
+      {
+        "subject": "History",
+        "mark": 80
+      },
+      {
+        "subject": "Physics",
+        "mark": 97
+      }
+    ],
+    "weakness_areas": "Chemistry, History",
+    "last_query": "Explain basics of Physics."
+  },
+  "std_005": {
+    "id": "std_005",
+    "name": "Aadhya Taylor",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 93
+      },
+      {
+        "subject": "Math",
+        "mark": 69
+      },
+      {
+        "subject": "Physics",
+        "mark": 64
+      }
+    ],
+    "weakness_areas": "Biology, Physics",
+    "last_query": "Explain basics of Math."
+  },
+  "std_006": {
+    "id": "std_006",
+    "name": "Reyansh Khan",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 79
+      },
+      {
+        "subject": "Computer Science",
+        "mark": 76
+      },
+      {
+        "subject": "Math",
+        "mark": 90
+      }
+    ],
+    "weakness_areas": "Biology, History",
+    "last_query": "Explain basics of English."
+  },
+  "std_007": {
+    "id": "std_007",
+    "name": "Amelia Davis",
+    "marks": [
+      {
+        "subject": "Biology",
+        "mark": 94
+      },
+      {
+        "subject": "Physics",
+        "mark": 50
+      },
+      {
+        "subject": "History",
+        "mark": 98
+      }
+    ],
+    "weakness_areas": "Physics, English",
+    "last_query": "Explain basics of English."
+  },
+  "std_008": {
+    "id": "std_008",
+    "name": "Myra Nair",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 65
+      },
+      {
+        "subject": "Math",
+        "mark": 57
+      },
+      {
+        "subject": "Computer Science",
+        "mark": 79
+      }
+    ],
+    "weakness_areas": "Chemistry, English",
+    "last_query": "Explain basics of Economics."
+  },
+  "std_009": {
+    "id": "std_009",
+    "name": "Benjamin Taylor",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 89
+      },
+      {
+        "subject": "English",
+        "mark": 96
+      },
+      {
+        "subject": "Biology",
+        "mark": 82
+      }
+    ],
+    "weakness_areas": "English, Economics",
+    "last_query": "Explain basics of Economics."
+  },
+  "std_010": {
+    "id": "std_010",
+    "name": "Ananya Moore",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 90
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 67
+      },
+      {
+        "subject": "Physics",
+        "mark": 83
+      }
+    ],
+    "weakness_areas": "Economics, History",
+    "last_query": "Explain basics of Biology."
+  },
+  "std_011": {
+    "id": "std_011",
+    "name": "Anika Wilson",
+    "marks": [
+      {
+        "subject": "Physics",
+        "mark": 65
+      },
+      {
+        "subject": "History",
+        "mark": 67
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 71
+      }
+    ],
+    "weakness_areas": "History, Computer Science",
+    "last_query": "Explain basics of Physics."
+  },
+  "std_012": {
+    "id": "std_012",
+    "name": "Atharv Roy",
+    "marks": [
+      {
+        "subject": "Biology",
+        "mark": 59
+      },
+      {
+        "subject": "Economics",
+        "mark": 95
+      },
+      {
+        "subject": "History",
+        "mark": 63
+      }
+    ],
+    "weakness_areas": "Physics, Biology",
+    "last_query": "Explain basics of English."
+  },
+  "std_013": {
+    "id": "std_013",
+    "name": "Emma Anderson",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 63
+      },
+      {
+        "subject": "Biology",
+        "mark": 76
+      },
+      {
+        "subject": "Math",
+        "mark": 74
+      }
+    ],
+    "weakness_areas": "Math, English",
+    "last_query": "Explain basics of English."
+  },
+  "std_014": {
+    "id": "std_014",
+    "name": "Lucas Sharma",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 76
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 84
+      },
+      {
+        "subject": "Biology",
+        "mark": 97
+      }
+    ],
+    "weakness_areas": "Biology, Economics",
+    "last_query": "Explain basics of Biology."
+  },
+  "std_015": {
+    "id": "std_015",
+    "name": "Anika Miller",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 71
+      },
+      {
+        "subject": "Math",
+        "mark": 92
+      },
+      {
+        "subject": "Biology",
+        "mark": 93
+      }
+    ],
+    "weakness_areas": "English, History",
+    "last_query": "Explain basics of Chemistry."
+  },
+  "std_016": {
+    "id": "std_016",
+    "name": "Isabella Roy",
+    "marks": [
+      {
+        "subject": "Math",
+        "mark": 86
+      },
+      {
+        "subject": "Biology",
+        "mark": 92
+      },
+      {
+        "subject": "Computer Science",
+        "mark": 51
+      }
+    ],
+    "weakness_areas": "Physics, History",
+    "last_query": "Explain basics of English."
+  },
+  "std_017": {
+    "id": "std_017",
+    "name": "Atharv Wilson",
+    "marks": [
+      {
+        "subject": "Chemistry",
+        "mark": 74
+      },
+      {
+        "subject": "Math",
+        "mark": 70
+      },
+      {
+        "subject": "Economics",
+        "mark": 63
+      }
+    ],
+    "weakness_areas": "Economics, Chemistry",
+    "last_query": "Explain basics of History."
+  },
+  "std_018": {
+    "id": "std_018",
+    "name": "Liam Singh",
+    "marks": [
+      {
+        "subject": "English",
+        "mark": 80
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 51
+      },
+      {
+        "subject": "Math",
+        "mark": 97
+      }
+    ],
+    "weakness_areas": "Math, Chemistry",
+    "last_query": "Explain basics of Biology."
+  },
+  "std_019": {
+    "id": "std_019",
+    "name": "Grace Mehta",
+    "marks": [
+      {
+        "subject": "Math",
+        "mark": 65
+      },
+      {
+        "subject": "English",
+        "mark": 62
+      },
+      {
+        "subject": "Economics",
+        "mark": 51
+      }
+    ],
+    "weakness_areas": "Chemistry, Physics",
+    "last_query": "Explain basics of Chemistry."
+  },
+  "std_020": {
+    "id": "std_020",
+    "name": "Lucas Gupta",
+    "marks": [
+      {
+        "subject": "Biology",
+        "mark": 66
+      },
+      {
+        "subject": "Economics",
+        "mark": 73
+      },
+      {
+        "subject": "History",
+        "mark": 60
+      }
+    ],
+    "weakness_areas": "Physics, English",
+    "last_query": "Explain basics of Chemistry."
+  },
+  "std_021": {
+    "id": "std_021",
+    "name": "Meera Gupta",
+    "marks": [
+      {
+        "subject": "Math",
+        "mark": 93
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 74
+      },
+      {
+        "subject": "Computer Science",
+        "mark": 75
+      }
+    ],
+    "weakness_areas": "Biology, Math",
+    "last_query": "Explain basics of Biology."
+  },
+  "std_022": {
+    "id": "std_022",
+    "name": "Advait Yadav",
+    "marks": [
+      {
+        "subject": "Physics",
+        "mark": 52
+      },
+      {
+        "subject": "English",
+        "mark": 72
+      },
+      {
+        "subject": "Computer Science",
+        "mark": 84
+      }
+    ],
+    "weakness_areas": "English, History",
+    "last_query": "Explain basics of History."
+  },
+  "std_023": {
+    "id": "std_023",
+    "name": "Ishaan Taylor",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 81
+      },
+      {
+        "subject": "Math",
+        "mark": 56
+      },
+      {
+        "subject": "Biology",
+        "mark": 77
+      }
+    ],
+    "weakness_areas": "History, Economics",
+    "last_query": "Explain basics of Economics."
+  },
+  "std_024": {
+    "id": "std_024",
+    "name": "Hannah Roy",
+    "marks": [
+      {
+        "subject": "English",
+        "mark": 83
+      },
+      {
+        "subject": "Physics",
+        "mark": 91
+      },
+      {
+        "subject": "History",
+        "mark": 67
+      }
+    ],
+    "weakness_areas": "Economics, Biology",
+    "last_query": "Explain basics of English."
+  },
+  "std_025": {
+    "id": "std_025",
+    "name": "Aria Singh",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 55
+      },
+      {
+        "subject": "English",
+        "mark": 67
+      },
+      {
+        "subject": "Physics",
+        "mark": 78
+      }
+    ],
+    "weakness_areas": "Biology, English",
+    "last_query": "Explain basics of Economics."
+  },
+  "std_026": {
+    "id": "std_026",
+    "name": "James Jackson",
+    "marks": [
+      {
+        "subject": "English",
+        "mark": 81
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 70
+      },
+      {
+        "subject": "Math",
+        "mark": 61
+      }
+    ],
+    "weakness_areas": "Economics, Physics",
+    "last_query": "Explain basics of History."
+  },
+  "std_027": {
+    "id": "std_027",
+    "name": "Saanvi Brown",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 67
+      },
+      {
+        "subject": "Economics",
+        "mark": 85
+      },
+      {
+        "subject": "History",
+        "mark": 50
+      }
+    ],
+    "weakness_areas": "Biology, Math",
+    "last_query": "Explain basics of Biology."
+  },
+  "std_028": {
+    "id": "std_028",
+    "name": "Noah Moore",
+    "marks": [
+      {
+        "subject": "Biology",
+        "mark": 91
+      },
+      {
+        "subject": "History",
+        "mark": 95
+      },
+      {
+        "subject": "Economics",
+        "mark": 81
+      }
+    ],
+    "weakness_areas": "Economics, English",
+    "last_query": "Explain basics of Math."
+  },
+  "std_029": {
+    "id": "std_029",
+    "name": "Kabir Yadav",
+    "marks": [
+      {
+        "subject": "Biology",
+        "mark": 65
+      },
+      {
+        "subject": "Economics",
+        "mark": 69
+      },
+      {
+        "subject": "History",
+        "mark": 92
+      }
+    ],
+    "weakness_areas": "History, Biology",
+    "last_query": "Explain basics of History."
+  },
+  "std_030": {
+    "id": "std_030",
+    "name": "Mia Anderson",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 79
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 67
+      },
+      {
+        "subject": "Economics",
+        "mark": 69
+      }
+    ],
+    "weakness_areas": "Computer Science, Physics",
+    "last_query": "Explain basics of Physics."
+  },
+  "std_031": {
+    "id": "std_031",
+    "name": "Ishika Brown",
+    "marks": [
+      {
+        "subject": "Physics",
+        "mark": 98
+      },
+      {
+        "subject": "History",
+        "mark": 94
+      },
+      {
+        "subject": "Computer Science",
+        "mark": 61
+      }
+    ],
+    "weakness_areas": "Biology, Physics",
+    "last_query": "Explain basics of Economics."
+  },
+  "std_032": {
+    "id": "std_032",
+    "name": "Anika Thomas",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 68
+      },
+      {
+        "subject": "Math",
+        "mark": 64
+      },
+      {
+        "subject": "Physics",
+        "mark": 73
+      }
+    ],
+    "weakness_areas": "Chemistry, Economics",
+    "last_query": "Explain basics of Math."
+  },
+  "std_033": {
+    "id": "std_033",
+    "name": "Hannah Anderson",
+    "marks": [
+      {
+        "subject": "Chemistry",
+        "mark": 53
+      },
+      {
+        "subject": "Economics",
+        "mark": 85
+      },
+      {
+        "subject": "Math",
+        "mark": 68
+      }
+    ],
+    "weakness_areas": "Chemistry, History",
+    "last_query": "Explain basics of Economics."
+  },
+  "std_034": {
+    "id": "std_034",
+    "name": "Advait Sharma",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 78
+      },
+      {
+        "subject": "Biology",
+        "mark": 71
+      },
+      {
+        "subject": "English",
+        "mark": 61
+      }
+    ],
+    "weakness_areas": "Math, Chemistry",
+    "last_query": "Explain basics of Economics."
+  },
+  "std_035": {
+    "id": "std_035",
+    "name": "Arjun Mehta",
+    "marks": [
+      {
+        "subject": "English",
+        "mark": 86
+      },
+      {
+        "subject": "Biology",
+        "mark": 90
+      },
+      {
+        "subject": "Math",
+        "mark": 93
+      }
+    ],
+    "weakness_areas": "Math, Physics",
+    "last_query": "Explain basics of Chemistry."
+  },
+  "std_036": {
+    "id": "std_036",
+    "name": "James Yadav",
+    "marks": [
+      {
+        "subject": "Physics",
+        "mark": 85
+      },
+      {
+        "subject": "Economics",
+        "mark": 98
+      },
+      {
+        "subject": "Math",
+        "mark": 76
+      }
+    ],
+    "weakness_areas": "Biology, English",
+    "last_query": "Explain basics of English."
+  },
+  "std_037": {
+    "id": "std_037",
+    "name": "Ethan Wilson",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 77
+      },
+      {
+        "subject": "English",
+        "mark": 69
+      },
+      {
+        "subject": "Economics",
+        "mark": 86
+      }
+    ],
+    "weakness_areas": "Math, Computer Science",
+    "last_query": "Explain basics of Physics."
+  },
+  "std_038": {
+    "id": "std_038",
+    "name": "Kavya Reddy",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 60
+      },
+      {
+        "subject": "History",
+        "mark": 65
+      },
+      {
+        "subject": "Math",
+        "mark": 61
+      }
+    ],
+    "weakness_areas": "Physics, Economics",
+    "last_query": "Explain basics of Math."
+  },
+  "std_039": {
+    "id": "std_039",
+    "name": "Noah Wilson",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 64
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 68
+      },
+      {
+        "subject": "Math",
+        "mark": 95
+      }
+    ],
+    "weakness_areas": "Computer Science, History",
+    "last_query": "Explain basics of Economics."
+  },
+  "std_040": {
+    "id": "std_040",
+    "name": "Ishaan Khan",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 87
+      },
+      {
+        "subject": "English",
+        "mark": 92
+      },
+      {
+        "subject": "History",
+        "mark": 62
+      }
+    ],
+    "weakness_areas": "English, Math",
+    "last_query": "Explain basics of Biology."
+  },
+  "std_041": {
+    "id": "std_041",
+    "name": "Grace Roy",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 54
+      },
+      {
+        "subject": "English",
+        "mark": 53
+      },
+      {
+        "subject": "Physics",
+        "mark": 60
+      }
+    ],
+    "weakness_areas": "Computer Science, Economics",
+    "last_query": "Explain basics of Computer Science."
+  },
+  "std_042": {
+    "id": "std_042",
+    "name": "Ethan Gupta",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 94
+      },
+      {
+        "subject": "History",
+        "mark": 75
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 67
+      }
+    ],
+    "weakness_areas": "Economics, Biology",
+    "last_query": "Explain basics of Physics."
+  },
+  "std_043": {
+    "id": "std_043",
+    "name": "Elijah Patel",
+    "marks": [
+      {
+        "subject": "English",
+        "mark": 88
+      },
+      {
+        "subject": "History",
+        "mark": 66
+      },
+      {
+        "subject": "Chemistry",
+        "mark": 51
+      }
+    ],
+    "weakness_areas": "Physics, Economics",
+    "last_query": "Explain basics of Math."
+  },
+  "std_044": {
+    "id": "std_044",
+    "name": "Lily Singh",
+    "marks": [
+      {
+        "subject": "Math",
+        "mark": 80
+      },
+      {
+        "subject": "English",
+        "mark": 83
+      },
+      {
+        "subject": "Physics",
+        "mark": 91
+      }
+    ],
+    "weakness_areas": "Economics, Chemistry",
+    "last_query": "Explain basics of Chemistry."
+  },
+  "std_045": {
+    "id": "std_045",
+    "name": "Aria Miller",
+    "marks": [
+      {
+        "subject": "Economics",
+        "mark": 72
+      },
+      {
+        "subject": "Math",
+        "mark": 76
+      },
+      {
+        "subject": "Biology",
+        "mark": 71
+      }
+    ],
+    "weakness_areas": "History, Economics",
+    "last_query": "Explain basics of Physics."
+  },
+  "std_046": {
+    "id": "std_046",
+    "name": "Ananya Brown",
+    "marks": [
+      {
+        "subject": "English",
+        "mark": 68
+      },
+      {
+        "subject": "History",
+        "mark": 92
+      },
+      {
+        "subject": "Biology",
+        "mark": 75
+      }
+    ],
+    "weakness_areas": "Math, Biology",
+    "last_query": "Explain basics of Physics."
+  },
+  "std_047": {
+    "id": "std_047",
+    "name": "Daniel Singh",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 82
+      },
+      {
+        "subject": "Math",
+        "mark": 50
+      },
+      {
+        "subject": "Biology",
+        "mark": 92
+      }
+    ],
+    "weakness_areas": "Economics, Biology",
+    "last_query": "Explain basics of Math."
+  },
+  "std_048": {
+    "id": "std_048",
+    "name": "Ishika Taylor",
+    "marks": [
+      {
+        "subject": "History",
+        "mark": 90
+      },
+      {
+        "subject": "Computer Science",
+        "mark": 78
+      },
+      {
+        "subject": "Biology",
+        "mark": 98
+      }
+    ],
+    "weakness_areas": "Math, Physics",
+    "last_query": "Explain basics of Computer Science."
+  },
+  "std_049": {
+    "id": "std_049",
+    "name": "Ella Roy",
+    "marks": [
+      {
+        "subject": "Computer Science",
+        "mark": 81
+      },
+      {
+        "subject": "Biology",
+        "mark": 57
+      },
+      {
+        "subject": "History",
+        "mark": 51
+      }
+    ],
+    "weakness_areas": "Biology, History",
+    "last_query": "Explain basics of Chemistry."
+  },
+  "std_050": {
+    "id": "std_050",
+    "name": "Meera Anderson",
+    "marks": [
+      {
+        "subject": "Math",
+        "mark": 55
+      },
+      {
+        "subject": "Computer Science",
+        "mark": 64
+      },
+      {
+        "subject": "Biology",
+        "mark": 57
+      }
+    ],
+    "weakness_areas": "Economics, Math",
+    "last_query": "Explain basics of Chemistry."
+  }
+}

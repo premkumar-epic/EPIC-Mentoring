@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Student Detail - AI Mentoring System{% endblock %}
+
+{% block nav_links %}
+<div class="bg-green-500 border-t border-green-400">
+    <div class="container mx-auto px-4">
+        <div class="flex space-x-1 py-2">
+            <a href="{{ url_for('mentor_dashboard') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('mentor_students') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-user-graduate"></i>
+                <span>Students</span>
+            </a>
+            <a href="{{ url_for('mentor_sessions') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Sessions</span>
+            </a>
+            <a href="{{ url_for('upload_marks') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-upload"></i>
+                <span>Upload Marks</span>
+            </a>
+            <a href="{{ url_for('mentor_feedback') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-comments"></i>
+                <span>Feedback</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+    <a href="{{ url_for('mentor_students') }}" class="text-blue-600 hover:underline">
+        <i class="fas fa-arrow-left"></i> Back to Students
+    </a>
+</div>
+
+<h1 class="text-3xl font-bold text-gray-800 mb-6">
+    <i class="fas fa-user-graduate text-green-600"></i> {{ student.name }}
+</h1>
+
+<div class="grid md:grid-cols-2 gap-6 mb-6">
+    <!-- Student Info -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-bold mb-4">Student Information</h2>
+        <p class="mb-2"><strong>Email:</strong> {{ student.email }}</p>
+        {% if student.weakness_areas %}
+        <div class="mb-2">
+            <strong>Weakness Areas:</strong>
+            <div class="flex flex-wrap gap-2 mt-2">
+                {% for area in student.weakness_areas %}
+                <span class="px-3 py-1 bg-red-100 text-red-800 rounded">{{ area }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if student.strengths %}
+        <div>
+            <strong>Strengths:</strong>
+            <div class="flex flex-wrap gap-2 mt-2">
+                {% for strength in student.strengths %}
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded">{{ strength }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Performance Summary -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-bold mb-4">Performance Summary</h2>
+        <div class="space-y-3">
+            <div>
+                <p class="text-gray-600">Average Marks</p>
+                <p class="text-3xl font-bold text-blue-600">{{ performance.average }}%</p>
+            </div>
+            <div>
+                <p class="text-gray-600">Total Subjects</p>
+                <p class="text-2xl font-bold text-green-600">{{ performance.total_subjects }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AI Preparation Tips -->
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-xl font-bold mb-4">
+        <i class="fas fa-lightbulb text-yellow-500"></i> AI Session Preparation Tips
+    </h2>
+    <ul class="space-y-3">
+        {% for tip in preparation_tips %}
+        <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+            <span class="text-gray-700">{{ tip }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Recent Performance -->
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-bold mb-4">Recent Performance</h2>
+    <div class="overflow-x-auto">
+        <table class="w-full">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 text-left">Subject</th>
+                    <th class="px-4 py-2 text-left">Marks</th>
+                    <th class="px-4 py-2 text-left">Semester</th>
+                    <th class="px-4 py-2 text-left">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mark in performance.marks[:10] %}
+                <tr class="border-b">
+                    <td class="px-4 py-2">{{ mark.subject }}</td>
+                    <td class="px-4 py-2">
+                        <span class="px-2 py-1 rounded {% if mark.marks >= 80 %}bg-green-100 text-green-800{% elif mark.marks >= 60 %}bg-yellow-100 text-yellow-800{% else %}bg-red-100 text-red-800{% endif %}">
+                            {{ mark.marks }}%
+                        </span>
+                    </td>
+                    <td class="px-4 py-2">{{ mark.semester }}</td>
+                    <td class="px-4 py-2">{{ mark.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

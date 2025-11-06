@@ -1,0 +1,1 @@
+<html><body><h2>Career Assessment</h2><form method='post'>{% for q in questions %}<p>{{ loop.index }}. {{ q }}<br><input name='q{{ loop.index }}' required></p>{% endfor %}<button>Submit</button></form><p><a href='/student/portal'>Back</a></p></body></html>

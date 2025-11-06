@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 p-10">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold text-indigo-700">
+        Welcome, {{ username }} 🧑‍🎓
+      </h1>
+      <a href="{{ url_for('logout') }}" class="text-red-500 font-semibold"
+        >Logout</a
+      >
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+      class="text-sm p-4 rounded-lg mb-4 {% if category == 'error' %}bg-red-100 text-red-700{% elif category == 'warning' %}bg-yellow-100 text-yellow-700{% else %}bg-green-100 text-green-700{% endif %}"
+    >
+      {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <div class="grid grid-cols-3 gap-6 mb-8">
+      <div
+        class="p-6 bg-white shadow-md rounded-xl border-t-4 border-indigo-500"
+      >
+        <h3 class="text-xl font-semibold mb-2 text-indigo-600">
+          AI Academic Advisor
+        </h3>
+        <form method="post" action="/student/query" class="flex space-x-2">
+          <input
+            name="query"
+            placeholder="Ask AI a question..."
+            required
+            class="flex-grow px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          />
+          <button
+            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold"
+          >
+            Ask
+          </button>
+        </form>
+        {% if last_response %}
+        <div class="mt-4 p-3 bg-gray-100 rounded-lg text-sm">
+          <p class="font-medium text-gray-800">AI Response:</p>
+          {{ last_response|safe }}
+        </div>
+        {% endif %}
+      </div>
+
+      <a
+        href="{{ url_for('career_assess') }}"
+        class="p-6 bg-white shadow-md rounded-xl text-center hover:shadow-lg transition block border-t-4 border-green-500"
+      >
+        <h3 class="text-xl font-semibold mb-2 text-green-700">
+          Career Path Assessment
+        </h3>
+        <p class="text-gray-600">
+          Discover personalized career recommendations.
+        </p>
+        <p class="mt-2 text-sm text-green-500">View Report</p>
+      </a>
+
+      <div
+        class="p-6 bg-white shadow-md rounded-xl border-t-4 border-yellow-500"
+      >
+        <h3 class="text-xl font-semibold mb-2 text-yellow-700">
+          Performance Dashboard
+        </h3>
+        <p class="font-medium text-gray-800 mb-2">
+          My Marks ({{ student.name }}):
+        </p>
+        <ul>
+          {% for m in marks %}
+          <li
+            class="flex justify-between text-sm py-1 border-b border-gray-100"
+          >
+            <span>{{m.subject}}:</span>
+            <span class="font-semibold">{{m.mark}}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 bg-white shadow-md rounded-xl border border-blue-200">
+      <h3 class="text-xl font-semibold mb-4 text-blue-600">
+        Recommended Mentor
+      </h3>
+      <p class="text-lg font-medium">{{ recommended_mentor.name }}</p>
+      <p class="text-sm text-gray-600">
+        Expertise: {{ recommended_mentor.expertise }}
+      </p>
+    </div>
+  </body>
+</html>

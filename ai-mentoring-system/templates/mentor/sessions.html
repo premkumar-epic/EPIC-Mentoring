@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Mentoring Sessions - AI Mentoring System{% endblock %}
+
+{% block nav_links %}
+<div class="bg-green-500 border-t border-green-400">
+    <div class="container mx-auto px-4">
+        <div class="flex space-x-1 py-2">
+            <a href="{{ url_for('mentor_dashboard') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('mentor_students') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-user-graduate"></i>
+                <span>Students</span>
+            </a>
+            <a href="{{ url_for('mentor_sessions') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-green-400 text-sm font-semibold nav-link-active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Sessions</span>
+            </a>
+            <a href="{{ url_for('upload_marks') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-upload"></i>
+                <span>Upload Marks</span>
+            </a>
+            <a href="{{ url_for('mentor_feedback') }}"
+               class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-200 text-sm font-medium">
+                <i class="fas fa-comments"></i>
+                <span>Feedback</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-gray-800 mb-6">
+    <i class="fas fa-calendar-check text-green-600"></i> Mentoring Sessions
+</h1>
+
+<!-- Schedule New Session -->
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-xl font-bold mb-4">Schedule New Session</h2>
+    <form method="POST" action="{{ url_for('mentor_sessions') }}">
+        <div class="grid md:grid-cols-3 gap-4 mb-4">
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Student</label>
+                <select name="student_id" required
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Select Student</option>
+                    {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Date & Time</label>
+                <input type="datetime-local" name="date" required
+                       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-semibold mb-2">Notes</label>
+            <textarea name="notes" rows="3"
+                      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Session agenda or notes..."></textarea>
+        </div>
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+            <i class="fas fa-plus"></i> Schedule Session
+        </button>
+    </form>
+</div>
+
+<!-- Session History -->
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-bold mb-4">Session History</h2>
+    {% if sessions %}
+    <div class="overflow-x-auto">
+        <table class="w-full">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 text-left">Student</th>
+                    <th class="px-4 py-2 text-left">Date</th>
+                    <th class="px-4 py-2 text-left">Status</th>
+                    <th class="px-4 py-2 text-left">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                <tr class="border-b">
+                    <td class="px-4 py-2">{{ session.student.name }}</td>
+                    <td class="px-4 py-2">{{ session.date }}</td>
+                    <td class="px-4 py-2">
+                        <span class="px-2 py-1 rounded {% if session.status == 'completed' %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                            {{ session.status|title }}
+                        </span>
+                    </td>
+                    <td class="px-4 py-2">{{ session.notes[:50] }}{% if session.notes|length > 50 %}...{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-gray-600">No sessions scheduled yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

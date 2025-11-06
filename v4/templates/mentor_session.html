@@ -1,0 +1,1 @@
+<html><body><h2>Session {{ session_request.id }}</h2><p>Student: {{ student.name }}</p><p>Query: {{ session_request.query }}</p><form method='post'><textarea name='mentor_assessment_notes'></textarea><button>Submit</button></form>{% if ai_tips %}<div>{{ ai_tips|safe }}</div>{% endif %}<p><a href='/mentor/dashboard'>Back</a></p></body></html>
