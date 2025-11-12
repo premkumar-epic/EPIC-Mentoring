@@ -249,24 +249,38 @@ Here's some academic guidance:
         return [
             {
                 'rank': 1,
-                'name': 'Dr. Sarah Johnson',
+                'name': 'Lokesh',
                 'rating': 4.8,
                 'students_mentored': 15,
                 'sessions_completed': 45
             },
             {
                 'rank': 2,
-                'name': 'Prof. Michael Chen',
-                'rating': 4.6,
+                'name': 'Sameena Kausar',
+                'rating': 4.7,
                 'students_mentored': 12,
-                'sessions_completed': 38
+                'sessions_completed': 5
             },
             {
                 'rank': 3,
-                'name': 'Dr. Emily Williams',
+                'name': 'Kalpana.T',
+                'rating': 4.6,
+                'students_mentored': 10,
+                'sessions_completed': 17
+            },
+            {
+                'rank': 4,
+                'name': 'Shardhanjali Mishra',
                 'rating': 4.5,
                 'students_mentored': 10,
-                'sessions_completed': 32
+                'sessions_completed': 9
+            },
+            {
+                'rank': 5,
+                'name': 'Kalpana.MN',
+                'rating': 3.2,
+                'students_mentored': 10,
+                'sessions_completed': 1
             }
         ]
 

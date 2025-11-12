@@ -38,75 +38,83 @@ class DataService:
             self.admins[admin2_id] = {'id': admin2_id, 'user_id': admin2_id}
 
         # Create sample mentors
-        mentor_id = self.create_user('Dr. Sarah Johnson', 'sarah@example.com', 'mentor123', 'mentor')
+        # Mentor 1: Lokesh
+        mentor_id = self.create_user('Lokesh', 'lokesh@example.com', 'mentor123', 'mentor')
         if mentor_id:
             self.mentors[mentor_id] = {
                 'id': mentor_id,
                 'user_id': mentor_id,
-                'expertise': ['Mathematics', 'Physics', 'Computer Science'],
-                'status': 'approved',
-                'rating': 4.5
-            }
-
-        mentor2_id = self.create_user('Prof. Michael Chen', 'michael@example.com', 'mentor456', 'mentor')
-        if mentor2_id:
-            self.mentors[mentor2_id] = {
-                'id': mentor2_id,
-                'user_id': mentor2_id,
-                'expertise': ['Chemistry', 'Biology', 'Engineering'],
+                'expertise': ['Computer Science', 'Data Analysis'],
                 'status': 'approved',
                 'rating': 4.8
             }
 
-        mentor3_id = self.create_user('Dr. Emily Rodriguez', 'emily@example.com', 'mentor789', 'mentor')
-        if mentor3_id:
-            self.mentors[mentor3_id] = {
-                'id': mentor3_id,
-                'user_id': mentor3_id,
-                'expertise': ['Psychology', 'Sociology', 'Education'],
-                'status': 'pending',
-                'rating': 0.0
-            }
-
-        mentor4_id = self.create_user('Dr. Robert Williams', 'robert@example.com', 'mentor101', 'mentor')
-        if mentor4_id:
-            self.mentors[mentor4_id] = {
-                'id': mentor4_id,
-                'user_id': mentor4_id,
-                'expertise': ['English', 'Literature', 'History'],
+        # Mentor 2: Sameena Kausar
+        mentor2_id = self.create_user('Sameena Kausar', 'sameena@example.com', 'mentor456', 'mentor')
+        if mentor2_id:
+            self.mentors[mentor2_id] = {
+                'id': mentor2_id,
+                'user_id': mentor2_id,
+                'expertise': ['Chemistry', 'Biology'],
                 'status': 'approved',
                 'rating': 4.7
             }
 
-        mentor5_id = self.create_user('Prof. Lisa Anderson', 'lisa@example.com', 'mentor202', 'mentor')
-        if mentor5_id:
-            self.mentors[mentor5_id] = {
-                'id': mentor5_id,
-                'user_id': mentor5_id,
-                'expertise': ['Business', 'Economics', 'Finance'],
+        # Mentor 3: Kalpana.T
+        mentor3_id = self.create_user('Kalpana.T', 'kalpana.t@example.com', 'mentor789', 'mentor')
+        if mentor3_id:
+            self.mentors[mentor3_id] = {
+                'id': mentor3_id,
+                'user_id': mentor3_id,
+                'expertise': ['Mathematics', 'Physics'],
                 'status': 'approved',
                 'rating': 4.6
             }
 
+        # Mentor 4: Shardhanjali Mishra
+        mentor4_id = self.create_user('Shardhanjali Mishra', 'shardhanjali@example.com', 'mentor101', 'mentor')
+        if mentor4_id:
+            self.mentors[mentor4_id] = {
+                'id': mentor4_id,
+                'user_id': mentor4_id,
+                'expertise': ['English', 'History'],
+                'status': 'approved',
+                'rating': 4.5
+            }
+
+        # Mentor 5: Kalpana.MN
+        mentor5_id = self.create_user('Kalpana.MN', 'kalpana.mn@example.com', 'mentor202', 'mentor')
+        if mentor5_id:
+            self.mentors[mentor5_id] = {
+                'id': mentor5_id,
+                'user_id': mentor5_id,
+                'expertise': ['Business', 'Finance'],
+                'status': 'approved',
+                'rating': 3.2
+            }
+
         # Store mentor IDs for assignment
-        approved_mentors = [mentor_id, mentor2_id, mentor4_id, mentor5_id]
+        # Note: I assumed all created mentors are approved for the student assignment logic below
+        approved_mentors = [mentor_id, mentor2_id, mentor3_id, mentor4_id, mentor5_id]
 
         # Create 50 students with diverse data
         student_names = [
-            'John Doe', 'Jane Smith', 'Alex Johnson', 'Emily Brown', 'Michael Davis',
-            'Sarah Wilson', 'David Martinez', 'Jessica Taylor', 'Christopher Lee', 'Amanda White',
-            'James Anderson', 'Ashley Thomas', 'Daniel Jackson', 'Nicole Harris', 'Matthew Clark',
-            'Samantha Lewis', 'Joshua Walker', 'Olivia Hall', 'Andrew Young', 'Sophia Allen',
-            'Ryan King', 'Isabella Wright', 'Kevin Lopez', 'Emma Hill', 'Brandon Scott',
-            'Ava Green', 'Justin Adams', 'Mia Baker', 'Tyler Nelson', 'Chloe Carter',
-            'Jacob Mitchell', 'Lily Perez', 'Nathan Roberts', 'Grace Turner', 'Ethan Phillips',
-            'Ella Campbell', 'Noah Parker', 'Zoe Evans', 'Caleb Edwards', 'Layla Collins',
-            'Logan Stewart', 'Aria Sanchez', 'Mason Morris', 'Hannah Rogers', 'Lucas Reed',
-            'Aubrey Cook', 'Jackson Morgan', 'Scarlett Bell', 'Aiden Murphy', 'Victoria Bailey'
+            'Abhimanue K P', 'A Punith Kumar', 'Abdul Basith C', 'Abhijith Krishnan A', 'A Hemanth Raghava',
+            'Akshata A G', 'Akshay C K', 'Ankesh Gowda K P', 'B venkata hasini', 'Bhuvan A C',
+            'H Supriya', 'Chaithra G', 'Chandana spoorthi K', 'Deshik K', 'Dhanush Premraj',
+            'Dinith T', 'Don Mathew Benny', 'Fahan Tabassum', 'Gowri A', 'Madhu kiran H Y',
+            'Harish M J', 'Hemanth M R', 'Hiba parvin m', 'Hrishikesh Rana', 'Irshad Ali M',
+            'Jeevan J', 'Jivika P', 'Lokesh C', 'Manoj', 'Mohammed Hashir P',
+            'Nandan Kumar J V', 'Nandana D', 'Nandushree N H', 'Naveen P U', 'Nayana shree N',
+            'Niranjana M V', 'Pavan N R', 'Deepu Nevis', 'R Vinod', 'Rahul K',
+            'Rayyan Ahmed N A', 'Roopesh', 'Rupadarshni S', 'S gowtham', 'Sai Kiran S',
+            'Sanjay S', 'Sanjay N T', 'SavinRaj K V', 'Shobha C', 'Sneha Sanjay Heddurshetti',
+            'Sneha Y', 'Srushti R H', 'Tharun Y N', 'Vaishnavi S', 'Yashaswini R',
+            'Sinchana', 'Rajiya Rajesab Mulla'
         ]
 
         subjects = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English',
-                   'History', 'Computer Science', 'Engineering', 'Literature', 'Economics']
+                    'History', 'Computer Science', 'Engineering', 'Literature', 'Economics']
 
         # Track which mentor to assign next
         mentor_index = 0
@@ -414,4 +422,3 @@ class DataService:
     def get_all_users(self):
         """Get all users"""
         return list(self.users.values())
-
